@@ -68,6 +68,9 @@ def send_data(serversocket, payload):
     print("Payload sent successfully")
 
 def main():
-  connect((Host, Port))
+    address = [(Host,Port)]
+    with Pool() as p:
+      p.map(connect, address*10)
 if __name__ == "__main__":
     main()
+

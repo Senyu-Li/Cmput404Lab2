@@ -90,8 +90,13 @@ def main():
         
         #continuously listen for connections
         while True:
-          conn, addr = s.accept()
-          handle_proxy(addr,conn)
+            conn, addr = s.accept()
+            print("Connected by", addr)
+            p = Process(target=handle_proxy,args=(addr,conn))
+            #recieve data, wait a bit, then send it back
+            p.daemon = True
+            p.start()
+            print("Started process", p)
 
 if __name__ == "__main__":
     main()
