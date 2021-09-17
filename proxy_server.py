@@ -89,9 +89,8 @@ def main():
         s.listen(2)
         
         #continuously listen for connections
-        while True:
-          conn, addr = s.accept()
-          handle_proxy(addr,conn)
+        conn, addr = s.accept()
+        handle_proxy(addr,conn)
 
 if __name__ == "__main__":
     main()
